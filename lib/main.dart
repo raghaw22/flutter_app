@@ -1,83 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:async';
-
-import 'homeScreen.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterapp/login.dart';
 
 //void main() => runApp(MyApp());
 
 
-void main(){
-  runApp(new MaterialApp(
-home: new SplashScreen(),
-    routes: <String, WidgetBuilder>{
-      '/HomeScreen': (BuildContext context) => new HomeScreen()
-    },
-  ));
+void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(MyApp());
 }
 
-
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  startTime() async {
-    var _duration = new Duration(seconds: 5);
-    return new Timer(_duration, navigationPage);
-  }
-
-  void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/HomeScreen');
-  }
-  @override
-  void initState() {
-    super.initState();
-    startTime();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Center(
-        child: new Image.asset('assets/images/demoimages.png'),
+    return MaterialApp(
+      title: "Demo App",
+      theme: ThemeData(
+          primaryColor: Color(0xff095d89),
+          accentColor: Color(0xff095d89)
       ),
+      //home: HomeScreen(),
+      home: LoginPage(),
+
     );
+
   }
 }
 
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Container();
-//  }
-//}
-//
-//
-//class MyApp extends StatefulWidget {
-//  @override
-//  _MyAppState createState() => _MyAppState();
-//}
-//
-//class _MyAppState extends State<MyApp> {
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      home: Scaffold(
-//        appBar: AppBar(
-//          title: Text("Test app"),
-//        ),
-//        body: SafeArea(
-//          child: ListTile(
-//
-//          ),
-//        ),
-//
-//      ),
-//
-//    );
-//  }
-//}
-//
+
+
 
